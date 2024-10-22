@@ -12,7 +12,7 @@ def categories(request: HttpRequest, cat_id) -> HttpResponse:
 
 
 def categories_by_slug(request: HttpRequest, cat_slug) -> HttpResponse:
-    return HttpResponse(f'Статьи по категориями слаг {cat_slug}')
+    return HttpResponse(f'Статьи по категориями слаг {cat_slug} !!!!!!!!!')
 
 class MyView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
