@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views import View
+from django.views.generic import TemplateView, ListView, DetailView
+
+from core.models import Post
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -21,5 +24,19 @@ class MyView(View):
         }
         return render(request, 'core/index.html', context)
 
-    def post(self, request: HttpRequest) -> HttpResponse:
-        return HttpResponse("Hello, POST")
+
+class MyTemplateView(TemplateView):
+    template_name = 'core/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({'a': 1})
+        return context
+
+
+class MyListView(ListView):
+    model = Post
+
+
+class MyDetailView(DetailView):
+    model = Post
